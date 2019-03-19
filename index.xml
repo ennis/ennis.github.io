@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Home on patapon&#39;s pond</title>
+    <title>Home on 🦆 patapon&#39;s pond</title>
     <link>/</link>
-    <description>Recent content in Home on patapon&#39;s pond</description>
+    <description>Recent content in Home on 🦆 patapon&#39;s pond</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <lastBuildDate>Sat, 16 Jun 2018 12:00:21 +0200</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Sat, 16 Jun 2018 12:00:21 +0200</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Hi, I am Alexandre Bléron. I can write code and do research, with a specialization in computer graphics. I studied at Université Grenoble Alpes, France, where I obtained a PhD in 2018.
+My research interests revolve mostly around computer graphics, and more specifically non-photorealistic &amp;ndash; or expressive &amp;ndash; rendering: i.e. finding new ways to render 3D scenes that give more freedom to artists (artist direction), and allow visual styles that deviate significantly from photorealism or the traditional look of computer graphics.</description>
+    </item>
     
   </channel>
 </rss>
