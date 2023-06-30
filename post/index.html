@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      patapon&#39;s pond
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/lightbox.css" />
+    <script src="/js/jquery-3.7.0.min.js"></script>
+  </head>
+  <body>
+    
+  <h1>Posts</h1>
+  
+    <article>
+      <h2>Kerbal Space Program controller build log 1</h2>
+      <p>A few years ago, I started playing <a href="https://www.kerbalspaceprogram.com/">Kerbal Space Program</a>. For those who don&rsquo;t know, KSP is a spaceflight simulation game in which you build rockets and spacecraft to send little green people called Kerbals around planets in a simulated solar system (and bring them back safely!).
+At some point, I saw on reddit that players were building custom control panels for the game, and it made me want to try my hand at building my own. This project lingered in the back of my head for a while, but recently I had a inexplicable surge of motivation to work on it again.</p>
+<p>I plan to do a &ldquo;build log&rdquo; of sorts, with this post being the first entry. It&rsquo;s mostly a dump of inspirations, experiments, construction details and rants, but there might be useful tidbits here and there.</p>
+<h2 id="inspiration">Inspiration</h2>
+<p>The <a href="https://forum.kerbalspaceprogram.com/topic/60620-custom-hardware-simpit-repository-for-people-who-take-ksp-a-little-too-far/">official forums</a> and the <a href="https://www.reddit.com/r/KerbalControllers/">/r/KerbalControllers</a> subreddit are good places to start. I wanted my control panel to have a somewhat realistic feel, so I also took inspiration from real spacecraft and plane cockpits. In general there seems to be a lot of toggle and rotary switches. For example in the Apollo capsule:</p>
+<div class="image">
+	<a href="/post/kspcon-build-log/apollo10.jpg" data-lightbox="inspiration">
+		<img src="/post/kspcon-build-log/apollo10.jpg" width="600px"/>
+	</a>
+	<div class="imagecaption">Apollo 10 CSM control panels @ Science Museum (London), photo by me</div>
+</div>
+<div class="image">
+	<a href="/post/kspcon-build-log/apollo10_another.jpg" data-lightbox="inspiration">
+		<img src="/post/kspcon-build-log/apollo10_another.jpg" width="600px"/>
+	</a>
+	<div class="imagecaption">Another view of the Apollo 10 CSM control panels</div>
+</div>
+<p>Toggle switches are still there on newer spacecraft, with the addition of large multi-function displays, like on the Boeing Starliner:</p>
+<div class="image">
+	<a href="/post/kspcon-build-log/starliner.jpg" data-lightbox="inspiration">
+		<img src="/post/kspcon-build-log/starliner.jpg" width="600px"/>
+	</a>
+	<div class="imagecaption">A more recent spacecraft control panel, the Boeing Starliner cockpit, showing mostly toggle switches and a few illuminated push buttons. Image by NASA.</div>
+</div>
+<p>Modern airliner cockpits on the other hand tend to replace most of the toggle switches with things called <em>korry switches</em>, push buttons with two independently illuminated indicators.
+For example, here&rsquo;s what the 787 overhead panel looks like:</p>
+<div class="image">
+	<a href="/post/kspcon-build-log/787-overhead.jpg" data-lightbox="inspiration">
+		<img src="/post/kspcon-build-log/787-overhead.jpg" width="500px"/>
+	</a>
+	<div class="imagecaption">Boeing 787 overhead panel</div>
+</div>
+<p>Also, there are a lot of resources to be found in the broader flight sim community. I took inspiration from two projects in particular:</p>
+<ul>
+<li><a href="https://thewarthogproject.com/">The Warthog Project</a>: a DIY A-10C Thunderbolt II &lsquo;Warthog&rsquo; Flight Simulator</li>
+<li><a href="https://forum.dcs.world/topic/210303-making-panels-project-log">https://forum.dcs.world/topic/210303-making-panels-project-log</a>: panels for a F/A-18 Hornet</li>
+</ul>
+<h2 id="design">Design</h2>
+<p>There are a lot of things you can do in KSP, but for the sake of example, let&rsquo;s say we choose to go to the Mun (the moon analogue of the kerbolar system).
+To fly this mission with only the controller, we need at least:</p>
+<ul>
+<li>a joystick to control the attitude of the rocket and spacecraft</li>
+<li>buttons to control the <a href="https://wiki.kerbalspaceprogram.com/wiki/SAS">Stability Augmentation System</a> (automatic attitude control)</li>
+<li>buttons to start the next stage of the rocket/spacecraft</li>
+<li>a throttle for powered descent on the mun</li>
+<li>switch to extend/retract the landing legs</li>
+<li>controls for planning orbital maneuvers</li>
+<li>if we want to do it Apollo-style, controls for docking/undocking</li>
+</ul>
+<p>Plus there are a lot of other spacecraft systems that you may want to play with: lights, solar panels, radiators, parachutes, <a href="https://wiki.kerbalspaceprogram.com/wiki/Action_group">action groups</a> etc.</p>
+<p>In the end I decided to split inputs into groups and place them onto <em>modules</em>.
+This way the controller can be extended by replacing/adding new modules. Also, any mistake I made during construction will be limited to one module, so I don&rsquo;t have to throw everything away on every mistake.</p>
+<p>Then I made a sketch to figure out the layout of the modules on the controller:</p>
+<div class="image">
+	<a href="/post/kspcon-build-log/design.png" data-lightbox="design">
+		<img src="/post/kspcon-build-log/design.png"/>
+	</a>
+	<span class="imagecaption">Rough sketch of the modules</span>
+</div>
+<p>For the inputs, I decided to use a mix of toggle switches, rotary switches, illuminated push buttons and custom korry-style buttons (more on that later).
+In addition, I (optimistically) put two multi-function displays (MFD) in the design to display mission status and the navball, and a panel with caution &amp; warning lights (annunciators).
+In total the footprint of the controller is about 50 cm wide and 35 cm deep.</p>
+<h2 id="components">Components</h2>
+<h3 id="inputs">Inputs</h3>
+<p>I bought these:</p>
+<ul>
+<li><a href="https://www.amazon.fr/BOJACK-RT1321-Interrupteur-bascule-125V/dp/B089PS3TP9">Toggle switches</a>. These are the &ldquo;big&rdquo; ones, not the &ldquo;mini&rdquo; toggle switches. I would have liked something with a paddle design like on the Apollo panels but I couldn&rsquo;t find anything in the &ldquo;hobbyist&rdquo; price range.</li>
+<li><a href="https://www.amazon.fr/RUNCCI-YUN-Encodeur-potentiom%C3%A8tre-num%C3%A9rique-Commutateur/dp/B09SG3HF9N/">Rotary encoders</a>, for the &ldquo;MANEUVER&rdquo; and &ldquo;TRIM&rdquo; module</li>
+<li><a href="https://www.amazon.fr/Heschen-verrouillage-Button-Switch-Orange/dp/B076WZD7YQ/">LED push buttons</a> for the abort &amp; stage buttons</li>
+</ul>
+<p>I&rsquo;ll also need rotary selectors but not sure which ones yet.</p>
+<h3 id="multi-function-displays">Multi-function displays</h3>
+<p>For now, I bought only one display: a <a href="https://shop.pimoroni.com/products/hyperpixel-4-square?variant=30138251444307">HyperPixel 4.0 Square Non-touch</a> and a Raspberry Pi Zero W to drive it.
+The display has a resolution of 720×720 pixels (254 PPI), which is nice. The Pi Zero is smaller than the screen so the total footprint is very small.</p>
+<h3 id="joysticks">Joysticks</h3>
+<p>I bought two industrial joystick switches from amazon (<a href="https://www.amazon.com/Position-Joystick-Momentary-Replacement-HKAI-41Z04/dp/B07PD9K6YB">this one</a>, I think). They have only four positions but
+I chose this instead of analog joysticks because they look more &ldquo;heavy duty&rdquo; and they have a nice &ldquo;clicking&rdquo; feeling when a contact is made. Not sure how that feels in game though&hellip;</p>
+
+<div  
+	
+	 style="width:500px" >
+
+	<a  data-lightbox="joystick"  
+	   
+		href="joystick.jpg">
+		<img src="joystick.jpg" 
+			 width="500px"  
+			
+		/>
+	</a>
+	
+	
+</div>
+
+<p>Together they have 4 axes, I&rsquo;m not sure yet of how I will map that to attitude/translation controls. I might end up replacing them with 3-axis analog joysticks (<a href="https://shop.pimoroni.com/products/3-axis-joystick-with-button?variant=40408724570195">these ones</a> seem to be popular on /r/KerbalControllers).</p>
+<h2 id="construction-progress">Construction progress</h2>
+<p>So far I&rsquo;ve built a crude frame to hold the modules, and made a prototype module to test the painting and engraving process. I&rsquo;ve also played around with software &amp; electronics, but I made little progress on that front.</p>
+<h3 id="frame">Frame</h3>
+<p>I needed something rigid to mount the panels on. I could have made the frame entirely out of laser-cut plywood, but I wanted something sturdier, so I looked at aluminium profiles.
+Most of them are quite big (the smallest standard size I found that was readily available was 15mm) and this reduces the clearance for components behind the panels.</p>
+<p>NOTE: real aircraft panels (like the 787 overhead pictured earlier) are mounted with &ldquo;Dzus fasteners&rdquo; on special rails. <a href="https://www.ebay.fr/itm/5-Stk-Dzus-Rail-1-4-Lange-von-100mm-bis-1400mm-Alu-Montage-Winkel-Schiene/313082817293?hash=item48e530ab0d:g:irEAAOSw68ZevU1K">They come up on ebay sometimes</a>.</p>
+<p>At some point I stumbled upon <a href="https://en.wikipedia.org/wiki/Eurorack">eurorack</a> modular synthesizers and thought that they were the perfect format for a desktop controller (<a href="https://www.reddit.com/r/KerbalControllers/comments/v17b8s/has_anyone_else_done_a_eurorack_compatible_ksp/">Other people</a> have had the same idea). Plus the rails are thin enough so that clearance is not an issue.
+There are websites that sell eurorack mounting rails for DIY enthusiasts, so I ordered a bunch (specifically, 104 HP low-profile rails, 4 single and 2 doubles), and built a (temporary) frame with the sides made of 5mm laser-cut plywood:</p>
+<div class="image">
+	<a href="/post/kspcon-build-log/frame-sketch.png" data-lightbox="frame">
+		<img src="/post/kspcon-build-log/frame-sketch.png" width="400px"/>
+	</a>
+	<div class="imagecaption">Sketch of the sides</div>
+</div>
+<div class="image">
+	<a href="/post/kspcon-build-log/frame.jpg" data-lightbox="frame">
+		<img src="/post/kspcon-build-log/frame.jpg" width="400px"/>
+	</a>
+	<div class="imagecaption">The frame with a test panel on it</div>
+</div>
+<div class="image">
+	<a href="/post/kspcon-build-log/frame_side.jpg" data-lightbox="frame">
+		<img src="/post/kspcon-build-log/frame_side.jpg" width="400px"/>
+	</a>
+	<div class="imagecaption">Another view</div>
+</div>
+<p>As you can see the whole thing looks very similar to a crude eurorack case. It is approximately 20cm tall, just small enough to not obstruct the view of my monitor.
+The heights between the rails is, from top to bottom: 3U, 1U, 2U and 2U. I wanted the height of the modules to have standard rack sizes just in case.
+The design of the frame and the modules went hand-in-hand: I had to modify the design of the modules to accomodate for the heights.</p>
+<p>In the end I&rsquo;m satisfied with the result. The frame feels quite sturdy already and it shouldn&rsquo;t be a problem to mount reasonably heavy components on it.
+Still, I&rsquo;ll probably replace the sides with something more professional-looking in the future.</p>
+<p>One thing that I don&rsquo;t like though is that eurorack module screws are very small (M3) compared to Dzus screws found in aircraft. I suppose that&rsquo;s a necessary sacrifice for making something small enough to fit on a desk.</p>
+<h3 id="panel-prototype">Panel prototype</h3>
+<h4 id="fabrication">Fabrication</h4>
+<p>I spent a long time thinking about how to make the module panels and print the labels on them.
+3D printing isn&rsquo;t feasible because of the large size of the panels, so laser-cut plastic sheets seemed to be the best bet.</p>
+<p>Unfortunately, at the time, fablabs with equipment to do that kind of work were closed because of COVID. I did a small test with a local business that did laser cutting, and while it wasn&rsquo;t that expensive it didn&rsquo;t work out in the end due to the limited choice of material. Eventually fablabs reopened and I went to a local one where you can book access to a laser-cutting machine (a Trotec Speedy 100) by the hour. More on that later.</p>
+<p>For the panel material, I chose <a href="https://en.wikipedia.org/wiki/Poly(methyl_methacrylate)">acrylic sheets</a> (a.k.a plexiglas and a whole lot of other names) as it is cheap and comes in a wide variety of types and colors.
+I considered three options for the labels:</p>
+<ol>
+<li>engrave text on a black acrylic sheet and fill the grooves with white paint</li>
+<li>cut the panel out of white PMMA, paint it black, and engrave the text on top of the painted panel to reveal the white plastic below</li>
+<li>use two-layer acrylic sheets (e.g. <a href="https://www.trotec-materials.com/laser-materials/plastic/trolase.html)">https://www.trotec-materials.com/laser-materials/plastic/trolase.html)</a>: same engraving process as above, but no need to paint</li>
+</ol>
+<p>I went with option 2, as this gives me more control over the appearance of the panel.</p>
+<h4 id="layout">Layout</h4>
+<p>It follows basically the same process as described <a href="https://thewarthogproject.com/the-panel-design">here</a>.
+The prototype module panel is made of three layers:</p>
+<ul>
+<li>the <em>bottom layer</em>, on which the toggle switches are mounted</li>
+<li>the <em>middle layer</em>, which hides the mounting nuts of the toggle switches. The holes for the toggle switches are a bit bigger on this layer.</li>
+<li>the <em>top layer</em>, with the engraved text.</li>
+</ul>
+<div class="image">
+	<a href="/post/kspcon-build-log/sas_sketch.png" data-lightbox="panel">
+		<img src="/post/kspcon-build-log/sas_sketch.png" width="500px"/>
+	</a>
+	<div class="imagecaption">Fusion 360 sketch of the top layer of the SAS module.</div>
+</div>
+<div class="image">
+	<a href="/post/kspcon-build-log/panel_sas.png" data-lightbox="panel">
+		<img src="/post/kspcon-build-log/panel_sas.png" width="500px"/>
+	</a>
+	<div class="imagecaption">Cutting paths for the three layers. From left to right: top layer, middle layer, bottom layer.</div>
+</div>
+<p>RANT: I designed the layers in fusion 360 and that was OK, but the complete workflow is atrocious: I can&rsquo;t send the fusion 360 sketch directly to the laser cutter, so first I had to export it to DXF,
+then import it in inkscape to adjust stroke colors and widths. This is because the laser cutter software interface is a virtual printer to which you send vector illustrations with exact stroke color and widths that are recognized as cutting paths or engraving paths depending on the color.
+I understand that this is done to make it more accessible, but there are a lot of things that can (and did) go wrong:</p>
+<ul>
+<li>fusion 360 messing up paths exported to DXF: some paths became disconnected and I had to fix that up in inkscape</li>
+<li>the laser cutter software silently dropping paths with the wrong color or width</li>
+<li>the drawing not showing up at all on the software because I accidentally added a 0.01 radius gaussian blur on top of my picture in inkscape (wasted an hour at the fablab because of that)</li>
+<li>overlapping duplicated paths: <em>of course</em> the software doesn&rsquo;t warn you about that. And if you don&rsquo;t catch it before starting the cutting job, the machine will make two passes, doubling the duration of the job and potentially ruining the whole piece.</li>
+</ul>
+<p>NOTE: A few thoughts about the laser-cutting process:</p>
+<ul>
+<li>It&rsquo;s best to prepare as much things as possible before being in front of the machine, but without access to the laser cutter software to check that the vector paths are recognized, the best you can do is blindly set the colors and widths to the expected values and hope for the best.</li>
+<li>The first time, there <em>will</em> be problems that you find while sitting in front of the machine, so you need to be conservative in your time estimates.</li>
+<li>Ideally the sheets to cut should be perfectly flat. Most of the sheets I had were slightly warped, even those I got from the fablab. This affects the precision of the cut.</li>
+<li>Be prepared to make adjustments on the final piece: for instance, I had to enlarge the middle hole for the mounting nuts because I wrote down the wrong diameter (17mm while should have been at least 18mm).</li>
+</ul>
+<p>I made each layer out of 3mm thick translucent white acrylic. I went with translucent to allow backlit labels (although it&rsquo;s not a priority right now).
+After cutting I painted the top layer black, with a matte black rattle-can spray paint on top of a primer. Here&rsquo;s the result:</p>
+<div class="image">
+	<a href="/post/kspcon-build-log/panel_exploded.jpg" data-lightbox="panel">
+		<img src="/post/kspcon-build-log/panel_exploded.jpg" width="500px"/>
+	</a>
+	<div class="imagecaption">The three panel layers. From left to right: top layer, middle layer, bottom layer. Top layer has been painted black.</div>
+</div>
+<div class="image">
+	<a href="/post/kspcon-build-log/panel_closeup.jpg" data-lightbox="panel">
+		<img src="/post/kspcon-build-log/panel_closeup.jpg" width="500px"/>
+	</a>
+	<div class="imagecaption">Stacked panel layers. The stack is 9mm thick.</div>
+</div>
+<div class="image">
+	<a href="/post/kspcon-build-log/panel.jpg" data-lightbox="panel">
+		<img src="/post/kspcon-build-log/panel.jpg" width="500px"/>
+	</a>
+	<div class="imagecaption">The panel from above.</div>
+</div>
+<p>I&rsquo;m not entirely satisfied with the paint coat: I struggled to make it even and some parts are noticeably glossier than others. Obviously, the next step is to engrave the text&hellip; but I haven&rsquo;t gotten around to it. I have to book another hour at the fablab, and I figured I should wait until I have more stuff to do there to make it worthwhile. Hopefully there will be another post about that soon.</p>
+<p>In retrospect, I learnt a lot from such a small part of the project. Having never designed a physical thing from scratch before, I was surprised at the amount of things that can go wrong in the process. It&rsquo;s quite fun though!</p>
+<div class="image">
+	<a href="/post/kspcon-build-log/hand.jpg" data-lightbox="frame">
+		<img src="/post/kspcon-build-log/hand.jpg" width="500px"/>
+	</a>
+	<div class="imagecaption">The module with mounted toggle switches and my hand for scale. </div>
+</div>
+<h3 id="korry-buttons">Korry buttons</h3>
+<p>For some reason I think that <a href="https://www.korry.com/433-switch">korry switches</a> look cool, so I wanted some in my controller. Unfortunately, real korry switches, being certified flight hardware, are hopelessly expensive (around $100 per switch) and usually out of reach for hobbyists. Sometimes surplus switches show up on ebay, but you don&rsquo;t really get a choice of labels.
+There exists professional-looking reproductions of korrys for flight simulators that are more affordable, but they are still expensive if you need more than a couple. Fortunately, DIY cockpit builders have devised ways to build convincing replicas <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>, so I followed a similar approach.</p>
+<p>First, I asked a friend to 3D-print a bunch of LED boxes (thanks!). I used <a href="https://www.thingiverse.com/thing:4678388">this design</a> by edouardallez on thingiverse.</p>
+<div class="image">
+	<a href="/post/kspcon-build-log/korry_led_well.jpg" data-lightbox="korry">
+		<img src="/post/kspcon-build-log/korry_led_well.jpg" width="500px"/>
+	</a>
+	<div class="imagecaption">3D-printed LED box, unpainted. I glued a push button behind for testing.</div>
+</div>
+<p>I made the button faces out of 1.5mm reverse-laserable black/transparent PMMA laminate: basically, it&rsquo;s a clear plexiglas sheet coated with an opaque layer that you can remove with a laser engraver or a CNC router (as I understand, it&rsquo;s mostly used for signage).</p>
+<div class="image">
+	<a href="/post/kspcon-build-log/korry_button_faces.jpg" data-lightbox="korry">
+		<img src="/post/kspcon-build-log/korry_button_faces.jpg" width="500px"/>
+	</a>
+	<div class="imagecaption">Various button faces.</div>
+</div>
+<p>Then I glued &ldquo;diffusers&rdquo; behind each button face: these are necessary to diffuse the light of the LED evenly across the label. They are 6mm thick and made out of translucent white acrylic (same as the panel).</p>
+<div class="image">
+	<a href="/post/kspcon-build-log/korry_diffusers.jpg" data-lightbox="korry">
+		<img src="/post/kspcon-build-log/korry_diffusers.jpg" width="500px"/>
+	</a>
+	<div class="imagecaption">6mm diffusers below the button face ensure uniform illumination of the label.</div>
+</div>
+<p>Here&rsquo;s the assembled button with the LED box painted black and the face:</p>
+<div class="image">
+	<a href="/post/kspcon-build-log/korry_assembled.jpg" data-lightbox="korry">
+		<img src="/post/kspcon-build-log/korry_assembled.jpg" width="500px"/>
+	</a>
+	<div class="imagecaption">Assembled button.</div>
+</div>
+<p>&hellip; and with LEDs:</p>
+<div class="image">
+	<a data-lightbox="korry-final" data-title="Illuminated button" href="/post/kspcon-build-log/korry.jpg">
+		<img src="/post/kspcon-build-log/korry.jpg" width="500px"/>
+	</a>
+	<div class="imagecaption">Illuminated button.</div>
+</div>
+<p>My main worry was light bleeding between the top &amp; bottom parts, but fortunately that wasn&rsquo;t the case with multiple coats of black paint.
+The picture above was actually taken with 3mm diffusers instead of 6mm and you can see that the illumination is uneven (you can somewhat make out the position of the LEDs behind). So 6mm thick diffusers are definitely needed.</p>
+<p>There are a few things to improve with the current design.
+First, the LED boxes are too small: with the 6mm diffusers the LEDs barely fit inside and the LED pins are bent uncomfortably.
+I&rsquo;m not entirely satified about the labels either: compared to real korrys, you can clearly make out the label when it&rsquo;s not illuminated. I think this is due to light backscattering on the engraved portions of labels. I&rsquo;m not sure yet how to fix this.</p>
+<p>Another issue is the mounting of the buttons on the panels: initially, my plan was to glue switches behind the buttons, solder the resulting assemblies onto a circuit board, and stick that behind the panels.
+But the more I think about this the more I&rsquo;m worried that the buttons might &ldquo;wobble&rdquo; when pressed since there&rsquo;s no rail or shaft to keep them straight during travel, unlike real korrys. I might need to rethink the design entirely if that proves to be a problem.</p>
+<h2 id="electronics--software">Electronics &amp; software</h2>
+<p>I didn&rsquo;t do much on the electronics &amp; software front. I did some tests with an Arduino Mega 2560, but the I/O on that board probably won&rsquo;t be enough. I have some <a href="https://github.com/ennis/kspcon/blob/master/src/main.cpp">proof of concept</a> arduino code and a <a href="https://github.com/ennis/kspcon/blob/master/KSPConMod/KSPConModAddon.cs">mod</a> for communication with the game via a serial-over-USB connection, but that&rsquo;s about it. To be honest, I find the &ldquo;physical&rdquo; part of the build much more interesting.</p>
+<h3 id="multi-function-display">Multi-function display</h3>
+<p>I spent a few week-ends tinkering with the Raspberry Pi and the HyperPixel 4 and managed to draw text &amp; vector graphics controlled remotely via an USB connection:</p>
+<div class="image">
+	<a data-lightbox="mfd" href="/post/kspcon-build-log/mfd.jpg">
+		<img src="/post/kspcon-build-log/mfd.jpg" width="500px"/>
+	</a>
+	<div class="imagecaption">Raspberry Pi Zero rendering text and vector graphics on a HyperPixel 4 screen.</div>
+</div>
+<p>This was much more troublesome than I expected, mostly because of software issues (the hardware is fine) and the poor state of cross-platform development in general. The story is too long and tedious to fit in this post, so it will have to wait for a future post/rant.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>That&rsquo;s all for this time. It took longer than expected to write down all this stuff, and some of it might become obsolete as the design evolves, but it&rsquo;s useful to be able to look back on early designs, if only to avoid making the same mistakes.</p>
+<p>The next post will probably be about engraving the labels on the panels. See you then!</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://sim-on-a320.com/blog/2008/10/29/making-korry-replicas/">https://sim-on-a320.com/blog/2008/10/29/making-korry-replicas/</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://sim-on-a320.com/blog/2008/10/29/making-korry-replicas/">https://sim-on-a320.com/blog/2008/10/29/making-korry-replicas/</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    </article>
+  
+
+    
+    
+    <script src="/js/lightbox.js"></script>
+    <script>
+        lightbox.option({
+          'resizeDuration': 0,
+          'fadeDuration': 0,
+          'imageFadeDuration': 0
+        })
+    </script>
+  </body>
+</html>

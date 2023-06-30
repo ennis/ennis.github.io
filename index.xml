@@ -1,14 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Home on 🦆 patapon&#39;s pond</title>
+    <title>patapon&#39;s pond</title>
     <link>/</link>
-    <description>Recent content in Home on 🦆 patapon&#39;s pond</description>
+    <description>Recent content on patapon&#39;s pond</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <lastBuildDate>Mon, 01 May 2023 17:23:52 +0200</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kerbal Space Program controller build log 1</title>
+      <link>/post/kspcon-build-log/</link>
+      <pubDate>Mon, 01 May 2023 17:23:52 +0200</pubDate>
+      
+      <guid>/post/kspcon-build-log/</guid>
+      <description>A few years ago, I started playing Kerbal Space Program. For those who don&amp;rsquo;t know, KSP is a spaceflight simulation game in which you build rockets and spacecraft to send little green people called Kerbals around planets in a simulated solar system (and bring them back safely!). At some point, I saw on reddit that players were building custom control panels for the game, and it made me want to try my hand at building my own.</description>
+    </item>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Hi, I am Alexandre Bléron. I can write code and do research, with a specialization in computer graphics. I studied at Université Grenoble Alpes, France, where I obtained a PhD in 2018.
+My research interests revolve mostly around computer graphics, and more specifically non-photorealistic &amp;ndash; or expressive &amp;ndash; rendering: i.e. finding new ways to render 3D scenes that give more freedom to artists (artist direction), and allow visual styles that deviate significantly from photorealism or the traditional look of computer graphics.</description>
+    </item>
     
   </channel>
 </rss>
