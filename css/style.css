@@ -112,3 +112,9 @@ nav {
     max-height: 100%;
     width: auto;
 }
+
+.proj-pic {
+    float: left;
+    margin-right: 5mm;
+}
+
